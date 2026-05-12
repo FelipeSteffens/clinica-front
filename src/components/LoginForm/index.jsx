@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { toast } from 'react-toastify'
 
@@ -6,8 +6,12 @@ import { useNavigate } from 'react-router'
 
 import axios from 'axios'
 
+// Contexto
 import { useAuth } from '../../contexts/AuthContext'
+
+// Modal
 import Modal from '../Modal'
+import RegisterUser from '../RegisterUser'
 
 const LoginForm = () => {
     const [email, setEmail] = useState("")
@@ -15,30 +19,30 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
 
-    const { login } = useAuth()
+    const { login, user } = useAuth()
 
-    // Controle do modal
+    // controle do modal
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
+    // autenticação do usuário (verificação)
 
+    useEffect(() => {
+        if (user) {
+            navigate('/dashboard')
+        }
+    }, [user, navigate])
 
     //validação de login
     const handleLogin = async (e) => {
         e.preventDefault()
 
         try {
-
             const response = await axios.get('http://localhost:3000/users', {
-
-                params: {
-                    email: email.trim(),
-                    password: password.trim()
-                }
+                params: { email, password }
             })
 
-            console.log("password", password)
-            console.log(typeof password)
+            console.log("response", response)
             // console.log("params", params)
 
             if (response.data.length === 0) {
@@ -106,25 +110,23 @@ const LoginForm = () => {
             </form>
 
             <div className='flex justify-between mt-4 text-sm'>
-                <button
-                    onClick={() => toast.info('Funcionalidade em desenvolvimento')}
-                    className='text-blue-600 hover:underline'>
+                <button onClick={() => toast.info('Funcionalidade em desenvolvimento')} className='text-blue-600 hover:underline cursor-pointer'>
                     Esqueceu sua senha?
                 </button>
 
-                <button
-                    onClick={() => setIsModalOpen(true)}
-                    className='text-blue-600 hover:underline'>
+                <button onClick={() => setIsModalOpen(true)} className='text-blue-600 hover:underline cursor-pointer'>
                     Criar Conta
                 </button>
             </div>
 
-            <Modal isOpen={isModalOpen} onClose={()=> setIsModalOpen(false)}>
-                <h1>teste</h1>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+                <RegisterUser />
             </Modal>
 
-        </div>
 
+
+
+        </div>
     )
 }
 

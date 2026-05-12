@@ -1,37 +1,39 @@
-import { createContext,useContext,useState,useEffect, Children } from "react";
+import { createContext, useContext, useState, useEffect } from 'react'
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) =>{
-    const [user,setUser] = useState(null)
+export const AuthProvider = ({ children }) => {
+    const [user, setUser] = useState(null)
 
-    //se ja tiver email no localstorege, mantem o login 
+    //se já tiver email no localStorage, mantém login
 
-    useEffect(() =>{
+    useEffect(() => {
         const savedEmail = localStorage.getItem("email")
 
-        if(savedEmail) {
-            setUser({email: savedEmail})
+        if (savedEmail) {
+            setUser({ email: savedEmail })
         }
-    },[])
 
-    const login = (email) =>{
+    }, [])
+
+    const login = (email) => {
         localStorage.setItem("email", email)
-        setUser({email})
+        setUser({ email })
     }
 
-    const logout = () =>{
+    const logout = () => {
         localStorage.removeItem("email")
         setUser(null)
     }
 
-    return(
-        <AuthContext.Provider value={{user,login,logout}}>
+    return (
+        <AuthContext.Provider value={{ user, login, logout }}>
             {children}
         </AuthContext.Provider>
     )
+
 }
 
-//hook customizando para consumir o contexto
+//hook customizado para consumir o contexto
 
 export const useAuth = () => useContext(AuthContext)
