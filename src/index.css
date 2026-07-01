@@ -1,1 +1,63 @@
 @import "tailwindcss";
+
+.dark-mode {
+    color: #e5e7eb;
+}
+
+.dark-mode .details-card,
+.dark-mode .bg-white {
+    background-color: #1f2937;
+    color: #e5e7eb;
+}
+
+.dark-mode .details-item,
+.dark-mode .border {
+    border-color: #374151;
+}
+
+.dark-mode .dark-readable,
+.dark-mode .text-gray-800,
+.dark-mode .text-gray-700 {
+    color: #e5e7eb;
+}
+
+.dark-mode .dark-muted,
+.dark-mode .text-gray-600,
+.dark-mode .text-gray-500 {
+    color: #cbd5e1;
+}
+
+.dark-mode .dark-title,
+.dark-mode .text-cyan-800 {
+    color: #67e8f9;
+}
+
+.dark-mode .dark-link,
+.dark-mode .text-cyan-700 {
+    color: #22d3ee;
+}
+
+.dark-mode .input-dark,
+.dark-mode input,
+.dark-mode select,
+.dark-mode textarea {
+    background-color: #111827;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.dark-mode .input-dark::placeholder,
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #9ca3af;
+}
+
+.dark-mode .sort-button {
+    border-color: #22d3ee;
+    color: #22d3ee;
+}
+
+.dark-mode .hover\:bg-gray-50:hover,
+.dark-mode .hover\:bg-cyan-50:hover {
+    background-color: #374151;
+}
