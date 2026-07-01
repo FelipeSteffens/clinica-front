@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link, useParams } from 'react-router'
 import { toast } from 'react-toastify'
-import { FaArrowLeft, FaFilePdf, FaSortAmountDown, FaSortAmountUp } from 'react-icons/fa'
+import { FaArrowLeft, FaCalendarCheck, FaFilePdf, FaSortAmountDown, FaSortAmountUp, FaVial } from 'react-icons/fa'
 
 const emptyConsult = {
     reason: '',
@@ -295,6 +295,28 @@ const PatientDetails = () => {
                     <p><strong>Convenio:</strong> {patient.healthInsurance || '-'}</p>
                     <p><strong>Alergias:</strong> {patient.allergies || '-'}</p>
                     <p><strong>Cuidados especiais:</strong> {patient.specialCare || '-'}</p>
+                </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="bg-white rounded-lg shadow p-5 flex items-center gap-4 details-card">
+                    <div className="bg-cyan-100 text-cyan-700 p-3 rounded-full counter-icon">
+                        <FaCalendarCheck size={24} />
+                    </div>
+                    <div>
+                        <p className="text-2xl font-bold text-cyan-800 dark-title">{consults.length}</p>
+                        <p className="text-sm text-gray-600 dark-muted">Consultas deste paciente</p>
+                    </div>
+                </div>
+
+                <div className="bg-white rounded-lg shadow p-5 flex items-center gap-4 details-card">
+                    <div className="bg-cyan-100 text-cyan-700 p-3 rounded-full counter-icon">
+                        <FaVial size={24} />
+                    </div>
+                    <div>
+                        <p className="text-2xl font-bold text-cyan-800 dark-title">{exams.length}</p>
+                        <p className="text-sm text-gray-600 dark-muted">Exames deste paciente</p>
+                    </div>
                 </div>
             </div>
 

@@ -61,3 +61,8 @@
 .dark-mode .hover\:bg-cyan-50:hover {
     background-color: #374151;
 }
+
+.dark-mode .counter-icon {
+    background-color: #164e63;
+    color: #67e8f9;
+}
